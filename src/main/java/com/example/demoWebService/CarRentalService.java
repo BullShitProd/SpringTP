@@ -59,9 +59,9 @@ public class CarRentalService {
         for (Car car : cars) {
             if (car.getPlateNumber().equals(plateNumber)) {
                 car.setRent(rent);
-                car.getRents().add(new Rent("11/11/2017", "1/1/2018"));
 
                 if (car.isRent()) {
+                    car.getRents().add(new Rent("11/11/2017", "1/1/2018"));
                     return car.getRents().get(car.getRents().size() -1);
 
                 } else {
@@ -71,6 +71,5 @@ public class CarRentalService {
         }
         return null;
     }
-
 
 }
