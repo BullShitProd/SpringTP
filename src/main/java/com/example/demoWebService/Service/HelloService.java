@@ -1,4 +1,4 @@
-package com.example.demoWebService;
+package com.example.demoWebService.Service;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

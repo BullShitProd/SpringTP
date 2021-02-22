@@ -1,17 +1,13 @@
-package com.example.demoWebService;
+package com.example.demoWebService.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
 
+import com.example.demoWebService.Entity.Car;
 import com.example.demoWebService.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 
 @RestController
 public class CarRentalService {
@@ -31,6 +27,9 @@ public class CarRentalService {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public List<Car> listOfCars(){
+
+        List<Car> cars = new ArrayList<Car>();
+        carRepository.findAll().forEach(cars::add);
         return cars;
     }
 
@@ -46,6 +45,9 @@ public class CarRentalService {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Car aCar(@PathVariable("plateNumber") String plateNumber) throws Exception{
+
+        List<Car> cars = new ArrayList<Car>();
+        carRepository.findAll().forEach(cars::add);
 
         for(Car car : cars) {
             if(car.getPlateNumber().equals(plateNumber)) {

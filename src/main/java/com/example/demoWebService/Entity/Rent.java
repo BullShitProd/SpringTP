@@ -1,4 +1,4 @@
-package com.example.demoWebService;
+package com.example.demoWebService.Entity;
 
 public class Rent {
 
