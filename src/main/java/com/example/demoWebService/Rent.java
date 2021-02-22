@@ -5,6 +5,8 @@ public class Rent {
     private String begin;
     private String end;
 
+    public Rent() { super(); }
+
     public Rent(String begin, String end) {
         this.begin = begin;
         this.end = end;

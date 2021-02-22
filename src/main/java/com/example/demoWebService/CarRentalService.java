@@ -54,6 +54,7 @@ public class CarRentalService {
     @RequestMapping(value = "/cars/{plateNumber}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public Rent rentAndGetBack(@PathVariable("plateNumber") String plateNumber,
+                   @RequestBody Rent rendUser,
                    @RequestParam(value="rent", required = true)boolean rent) throws Exception {
 
         for (Car car : cars) {
@@ -61,7 +62,7 @@ public class CarRentalService {
                 car.setRent(rent);
 
                 if (car.isRent()) {
-                    car.getRents().add(new Rent("11/11/2017", "1/1/2018"));
+                    car.getRents().add(rendUser);
                     return car.getRents().get(car.getRents().size() -1);
 
                 } else {
