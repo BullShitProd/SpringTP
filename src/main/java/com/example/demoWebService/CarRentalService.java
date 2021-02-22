@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import com.example.demoWebService.repository.CarRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.HttpEntity;
@@ -16,9 +18,13 @@ public class CarRentalService {
 
     private List<Car> cars = new ArrayList<Car>();
 
-    public CarRentalService() {
+    CarRepository carRepository;
+
+    @Autowired
+    public CarRentalService(CarRepository carRepository) {
         cars.add(new Car("11AA22", "Ferrari", 1000));
         cars.add(new Car("33BB44", "Porshe", 2222));
+        this.carRepository = carRepository;
     }
 
     @RequestMapping(value = "/cars", method = RequestMethod.GET)
@@ -30,8 +36,9 @@ public class CarRentalService {
 
     @PostMapping("/cars")
     public void addCar(@RequestBody Car car) throws Exception{
-        System.out.println(car);
-        cars.add(car);
+
+        carRepository.save(car);
+
     }
 
 
@@ -51,26 +58,26 @@ public class CarRentalService {
     }
 
 
-    @RequestMapping(value = "/cars/{plateNumber}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.OK)
-    public Rent rentAndGetBack(@PathVariable("plateNumber") String plateNumber,
-                   @RequestBody Rent rendUser,
-                   @RequestParam(value="rent", required = true)boolean rent) throws Exception {
-
-        for (Car car : cars) {
-            if (car.getPlateNumber().equals(plateNumber)) {
-                car.setRent(rent);
-
-                if (car.isRent()) {
-                    car.getRents().add(rendUser);
-                    return car.getRents().get(car.getRents().size() -1);
-
-                } else {
-                    return null;
-                }
-            }
-        }
-        return null;
-    }
+//    @RequestMapping(value = "/cars/{plateNumber}", method = RequestMethod.PUT)
+//    @ResponseStatus(HttpStatus.OK)
+//    public Rent rentAndGetBack(@PathVariable("plateNumber") String plateNumber,
+//                   @RequestBody Rent rendUser,
+//                   @RequestParam(value="rent", required = true)boolean rent) throws Exception {
+//
+//        for (Car car : cars) {
+//            if (car.getPlateNumber().equals(plateNumber)) {
+//                car.setRent(rent);
+//
+//                if (car.isRent()) {
+//                    car.getRents().add(rendUser);
+//                    return car.getRents().get(car.getRents().size() -1);
+//
+//                } else {
+//                    return null;
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
 }

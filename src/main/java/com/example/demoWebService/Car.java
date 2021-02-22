@@ -1,17 +1,22 @@
 package com.example.demoWebService;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 
 
+@Entity
 public class Car {
 
+    private long id;
     private String plateNumber;
     private String brand;
     private int price;
     private boolean rent;
 
-    private ArrayList<Rent> rents;
-
+//    private ArrayList<Rent> rents;
 
 
     public Car() {
@@ -24,7 +29,18 @@ public class Car {
         this.brand = brand;
         this.price = price;
         rent = false;
-        rents = new ArrayList<>();
+//        rents = new ArrayList<>();
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public long getId() {
+        return id;
+    }
+
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getPlateNumber() {
@@ -59,13 +75,13 @@ public class Car {
         this.rent = rent;
     }
 
-    public ArrayList<Rent> getRents() {
-        return rents;
-    }
+//    public ArrayList<Rent> getRents() {
+//        return rents;
+//    }
 
-    public void setRents(ArrayList<Rent> rents) {
-        this.rents = rents;
-    }
+//    public void setRents(ArrayList<Rent> rents) {
+//        this.rents = rents;
+//    }
 
     @Override
     public String toString() {
