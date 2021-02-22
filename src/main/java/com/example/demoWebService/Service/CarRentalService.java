@@ -12,52 +12,52 @@ import org.springframework.http.HttpStatus;
 @RestController
 public class CarRentalService {
 
-    private List<Car> cars = new ArrayList<Car>();
-
-    CarRepository carRepository;
-
-    @Autowired
-    public CarRentalService(CarRepository carRepository) {
-        cars.add(new Car("11AA22", "Ferrari", 1000));
-        cars.add(new Car("33BB44", "Porshe", 2222));
-        this.carRepository = carRepository;
-    }
-
-    @RequestMapping(value = "/cars", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public List<Car> listOfCars(){
-
-        List<Car> cars = new ArrayList<Car>();
-        carRepository.findAll().forEach(cars::add);
-        return cars;
-    }
-
-    @PostMapping("/cars")
-    public void addCar(@RequestBody Car car) throws Exception{
-
-        carRepository.save(car);
-
-    }
-
-
-    @RequestMapping(value = "/cars/{plateNumber}", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public Car aCar(@PathVariable("plateNumber") String plateNumber) throws Exception{
-
-        List<Car> cars = new ArrayList<Car>();
-        carRepository.findAll().forEach(cars::add);
-
-        for(Car car : cars) {
-            if(car.getPlateNumber().equals(plateNumber)) {
-                return car;
-            }
-        }
-
-        return null;
-
-    }
+//    private List<Car> cars = new ArrayList<Car>();
+//
+//    CarRepository carRepository;
+//
+//    @Autowired
+//    public CarRentalService(CarRepository carRepository) {
+////        cars.add(new Car("11AA22", "Ferrari", 1000));
+////        cars.add(new Car("33BB44", "Porshe", 2222));
+//        this.carRepository = carRepository;
+//    }
+//
+//    @RequestMapping(value = "/cars", method = RequestMethod.GET)
+//    @ResponseStatus(HttpStatus.OK)
+//    @ResponseBody
+//    public List<Car> listOfCars(){
+//
+//        List<Car> cars = new ArrayList<Car>();
+//        carRepository.findAll().forEach(cars::add);
+//        return cars;
+//    }
+//
+//    @PostMapping("/cars")
+//    public void addCar(@RequestBody Car car) throws Exception{
+//
+//        carRepository.save(car);
+//
+//    }
+//
+//
+//    @RequestMapping(value = "/cars/{plateNumber}", method = RequestMethod.GET)
+//    @ResponseStatus(HttpStatus.OK)
+//    @ResponseBody
+//    public Car aCar(@PathVariable("plateNumber") String plateNumber) throws Exception{
+//
+//        List<Car> cars = new ArrayList<Car>();
+//        carRepository.findAll().forEach(cars::add);
+//
+//        for(Car car : cars) {
+//            if(car.getPlateNumber().equals(plateNumber)) {
+//                return car;
+//            }
+//        }
+//
+//        return null;
+//
+//    }
 
 
 //    @RequestMapping(value = "/cars/{plateNumber}", method = RequestMethod.PUT)
