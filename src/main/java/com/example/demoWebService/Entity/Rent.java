@@ -1,30 +1,71 @@
 package com.example.demoWebService.Entity;
 
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
 public class Rent {
 
-    private String begin;
-    private String end;
 
-    public Rent() { super(); }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    private Date benginRent, endRent;
 
-    public Rent(String begin, String end) {
-        this.begin = begin;
-        this.end = end;
+    @ManyToOne
+    private Person person;
+
+    @ManyToOne
+    private Vehicule vehicule;
+
+
+    public Rent() {super(); }
+
+    public Rent(Date benginRent, Date endRent, Person person, Vehicule vehicule) {
+        this.benginRent = benginRent;
+        this.endRent = endRent;
+        this.person = person;
+        this.vehicule = vehicule;
     }
 
-    public String getBegin() {
-        return begin;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setBegin(String begin) {
-        this.begin = begin;
+    public long getId() {
+        return id;
     }
 
-    public String getEnd() {
-        return end;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setEnd(String end) {
-        this.end = end;
+    public void setPerson(Person person) {
+        this.person = person;
     }
+
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+
+    public Date getBenginRent() {
+        return benginRent;
+    }
+
+    public void setBenginRent(Date benginRent) {
+        this.benginRent = benginRent;
+    }
+
+    public Date getEndRent() {
+        return endRent;
+    }
+
+    public void setEndRent(Date endRent) {
+        this.endRent = endRent;
+    }
+
 }

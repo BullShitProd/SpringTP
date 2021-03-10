@@ -2,6 +2,8 @@ package com.example.demoWebService.Entity;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -15,13 +17,17 @@ public class Vehicule {
     private int price;
     private boolean rent;
 
+    @OneToMany
+    private List<Rent> rents;
+
     public Vehicule(){super();}
 
-    public Vehicule(String plateNumber, String brand, int price, boolean rent) {
+    public Vehicule(String plateNumber, String brand, int price) {
         this.plateNumber = plateNumber;
         this.brand = brand;
         this.price = price;
-        this.rent = rent;
+        this.rent = false;
+        this.rents = null;
     }
 
     public long getId() {
@@ -62,6 +68,14 @@ public class Vehicule {
 
     public void setRent(boolean rent) {
         this.rent = rent;
+    }
+
+    public List<Rent> getRents() {
+        return rents;
+    }
+
+    public void setRents(List<Rent> rents) {
+        this.rents = rents;
     }
 
     @Override

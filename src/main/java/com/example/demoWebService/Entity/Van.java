@@ -1,6 +1,7 @@
 package com.example.demoWebService.Entity;
 
 import javax.persistence.Entity;
+import java.util.List;
 
 @Entity
 public class Van extends Vehicule {
@@ -9,8 +10,8 @@ public class Van extends Vehicule {
 
     public Van() {super();}
 
-    public Van(String plateNumber, String brand, int price, boolean rent, float maxWeight) {
-        super(plateNumber, brand, price, rent);
+    public Van(String plateNumber, String brand, int price, boolean rent, float maxWeight, List<Rent> rents) {
+        super(plateNumber, brand, price);
         this.maxWeight = maxWeight;
     }
 
