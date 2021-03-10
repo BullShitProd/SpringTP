@@ -43,14 +43,16 @@ public class CarService {
     List<Car> cars = new ArrayList<Car>();
 
        carRepository.findAll().forEach(cars::add);
+       Car car = carRepository.findByPlateNumber(plateNumber);
+       return car;
 
-        for(Car car : cars) {
-          if(car.getPlateNumber().equals(plateNumber)) {
-                return car;
-          }
-        }
+        //for(Car car : cars) {
+        //   if(car.getPlateNumber().equals(plateNumber)) {
+        //         return car;
+        //   }
+        // }
 
-       return null;
+        // return null;
    }
 
 

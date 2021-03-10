@@ -1,6 +1,10 @@
 package com.example.demoWebService.Entity;
 
+import com.example.demoWebService.Utils.DateUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.text.ParseException;
 import java.util.Date;
 
 @Entity
@@ -13,9 +17,11 @@ public class Rent {
     private Date benginRent, endRent;
 
     @ManyToOne
+    @JsonIgnore
     private Person person;
 
     @ManyToOne
+    @JsonIgnore
     private Vehicule vehicule;
 
 
@@ -27,6 +33,15 @@ public class Rent {
         this.person = person;
         this.vehicule = vehicule;
     }
+
+    public Rent(String benginRent, String endRent) throws ParseException {
+        this.benginRent = DateUtils.getDate(benginRent);
+        this.endRent = DateUtils.getDate(endRent);
+        this.person = null;
+        this.vehicule = null;
+    }
+
+
 
     public Person getPerson() {
         return person;

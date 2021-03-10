@@ -1,8 +1,10 @@
 package com.example.demoWebService.Entity;
 
 
+import com.example.demoWebService.Utils.DateUtils;
+
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -26,9 +28,23 @@ public class Vehicule {
         this.plateNumber = plateNumber;
         this.brand = brand;
         this.price = price;
-        this.rent = false;
         this.rents = null;
     }
+
+    public boolean isRent(Date beginDate, Date endDate) {
+
+        for(Rent rent: rents) {
+
+            if(DateUtils.isWithinRange(rent.getBenginRent(), rent.getEndRent(), beginDate) ||
+            DateUtils.isWithinRange(rent.getBenginRent(), rent.getEndRent(), endDate)) {
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
 
     public long getId() {
         return id;
@@ -82,4 +98,6 @@ public class Vehicule {
     public String toString() {
         return "Vehicule [plateNumber=" + plateNumber + ", brand=" + brand + ", price=" + price + "]";
     }
+
+
 }

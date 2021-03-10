@@ -44,15 +44,9 @@ public class VanService {
     public Van aVan(@PathVariable("plateNumber") String plateNumber) throws Exception{
         List<Van> vans = new ArrayList<Van>();
 
-        vanRepository.findAll().forEach(vans::add);
+        Van van = vanRepository.findByPlateNumber(plateNumber);
+        return van;
 
-        for(Van van : vans) {
-            if(van.getPlateNumber().equals(plateNumber)) {
-                return van;
-            }
-        }
-
-        return null;
     }
 
 
