@@ -10,7 +10,7 @@ public class Van extends Vehicule {
 
     public Van() {super();}
 
-    public Van(String plateNumber, String brand, int price, boolean rent, float maxWeight, List<Rent> rents) {
+    public Van(String plateNumber, String brand, int price, float maxWeight) {
         super(plateNumber, brand, price);
         this.maxWeight = maxWeight;
     }
