@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class CarService {
 
@@ -32,7 +33,6 @@ public class CarService {
     @PostMapping("/cars")
     public String addCar(@RequestBody Car car) throws Exception{
        carRepository.save(car);
-
        return "Add car success";
     }
 

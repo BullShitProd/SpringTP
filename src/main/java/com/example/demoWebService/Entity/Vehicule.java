@@ -17,7 +17,6 @@ public class Vehicule {
     private String plateNumber;
     private String brand;
     private int price;
-    private boolean rent;
 
     @OneToMany
     private List<Rent> rents;
@@ -76,14 +75,6 @@ public class Vehicule {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public boolean isRent() {
-        return rent;
-    }
-
-    public void setRent(boolean rent) {
-        this.rent = rent;
     }
 
     public List<Rent> getRents() {
